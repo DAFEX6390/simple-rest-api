@@ -1,0 +1,12 @@
+# Configuraciones del editor
+.vscode
+
+# nodejs npm
+node_modules
+package-lock.json
+
+# Variables de entorno
+.env
+
+# pruebas
+test
