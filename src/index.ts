@@ -5,7 +5,6 @@ import cors from "cors";
 import http from "http";
 
 import apiRoutes from "./routes/api.routes";
-import { tokenRequired } from "./util/middleware";
 
 import "./database";
 
@@ -17,7 +16,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors());
 
-app.use("/api", tokenRequired, apiRoutes);
+app.use("/", apiRoutes);
 
 http.createServer(app).listen(app.get("port"))
     .on("listening", () => {

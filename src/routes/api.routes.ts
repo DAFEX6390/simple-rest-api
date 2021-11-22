@@ -3,6 +3,16 @@ import User from "../models/User";
 import mongoose from "mongoose";
 const router = Router();
 
+router.get("/", (req, res) => {
+    return res.json({
+        "title": "Welcome to my rest-api",
+        "routes": {
+            "/users": ["GET", "POST"],
+            "/users/:id": ["GET", "PUT", "DELETE"]
+        }
+    });
+});
+
 router.get("/users", async (req, res) => {
     const users = await User.find();
     return res.json({
