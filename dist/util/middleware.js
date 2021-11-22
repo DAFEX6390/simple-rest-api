@@ -8,16 +8,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.tokenRequired = void 0;
+const Admin_1 = __importDefault(require("../models/Admin"));
 const tokenRequired = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    /*if (!req.headers["authorization"]) return res.status(403).json({ error: true, message: "No autorizado" });
-
-    const admin = await Admin.findOne({ token: req.headers["authorization"] });
-
-    if (!admin) return res.status(403).json({ error: true, message: "No autorizado" });
-
-    else next(); */
-    next();
+    if (!req.headers["authorization"])
+        return res.status(403).json({ error: true, message: "Unauthorized" });
+    const admin = yield Admin_1.default.findOne({ token: req.headers["authorization"] });
+    if (!admin)
+        return res.status(403).json({ error: true, message: "Unauthorized" });
+    else
+        next();
 });
 exports.tokenRequired = tokenRequired;
